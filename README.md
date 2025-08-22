@@ -228,6 +228,56 @@ I can produce a production-ready `Dockerfile` + `docker-compose.yml` if you want
 
 ---
 
+Got it 👍 — here’s a clean **README section with only Alembic steps** that you can drop in:
+
+---
+
+## 📦 Database Migrations (Alembic)
+
+We use [Alembic](https://alembic.sqlalchemy.org/) for database migrations.
+
+### Running Migrations
+
+* **Apply all migrations to the database**
+
+  ```bash
+  alembic upgrade head
+  ```
+
+* **Revert the last migration**
+
+  ```bash
+  alembic downgrade -1
+  ```
+
+### Creating New Migrations
+
+* **Autogenerate a new migration** based on model changes:
+
+  ```bash
+  alembic revision --autogenerate -m "description_of_change"
+  ```
+
+* **Create an empty migration** (manual SQL):
+
+  ```bash
+  alembic revision -m "manual_migration"
+  ```
+
+### Checking Current DB Version
+
+```bash
+alembic current
+```
+
+### Viewing Migration History
+
+```bash
+alembic history --verbose
+```
+
+---
+
 ## Next steps I can do for you (pick one)
 
 1. Generate real starter content for each touched file (skeleton code for all files created above).
