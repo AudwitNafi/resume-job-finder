@@ -173,7 +173,8 @@ Copy to `.env` and fill values before running in dev or CI.
 * Start dev server
 
   ```bash
-  uv run -- uvicorn backend.app.main:app --reload --port 8000
+  cd backend\
+  uv run -- uvicorn main:app --reload --port 8000
   ```
 
   or activate venv and:

@@ -17,11 +17,13 @@ app = FastAPI(title="Resume Job Finder API")
 
 # Startup and shutdown events
 async def startup_handler():
-    await connect_to_mongo()
+    # await connect_to_mongo()
+    pass
 
 
 async def shutdown_handler():
-    await close_mongo_connection()
+    # await close_mongo_connection()
+    pass
 
 
 app.add_event_handler("startup", startup_handler)

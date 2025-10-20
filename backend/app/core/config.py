@@ -37,7 +37,7 @@ class Settings(BaseSettings):
     POSTGRES_PASSWORD: str = "changethis"
     
     #MongoDB
-    MONGO_URI: str = "mongodb+srv://..."  # Replace with your actual MongoDB URI
+    MONGO_URI: str = "mongodb+srv://..."  
 
     MONGO_DB: str = "resume_job_finder"
 
