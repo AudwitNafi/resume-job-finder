@@ -35,6 +35,11 @@ class Settings(BaseSettings):
     POSTGRES_DB: str = "app"
     POSTGRES_USER: str = "postgres"
     POSTGRES_PASSWORD: str = "changethis"
+    
+    #MongoDB
+    MONGO_URI: str = "mongodb+srv://..."  # Replace with your actual MongoDB URI
+
+    MONGO_DB: str = "resume_job_finder"
 
     # Docker images
     DOCKER_IMAGE_BACKEND: str = "backend"
