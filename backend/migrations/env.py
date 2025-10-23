@@ -4,7 +4,7 @@ from alembic import context
 
 # Project-specific imports
 from app.core.config import settings  # your settings with DATABASE_URL
-from app.models.base import Base      # your SQLAlchemy models Base
+from app.core.database import Base      # your SQLAlchemy models Base
 
 # Alembic Config object, provides access to values in alembic.ini
 config = context.config

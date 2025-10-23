@@ -42,7 +42,13 @@ class Settings(BaseSettings):
     DOCKER_IMAGE_BACKEND: str = "backend"
     DOCKER_IMAGE_FRONTEND: str = "frontend"
 
-
+    # --- JWT Settings ---
+    JWT_SECRET_KEY: str
+    ALGORITHM: str = "HS256"
+    ACCESS_TOKEN_EXPIRE_MINUTES: int
+    REFRESH_TOKEN_EXPIRE_MINUTES: int
+    PASS_RESET_TOKEN_EXPIRE_MINUTES: int
+    
     @property
     def DATABASE_URL(self) -> str:
         return (
