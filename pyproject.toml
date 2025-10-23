@@ -8,6 +8,7 @@ dependencies = [
     "alembic>=1.16.4",
     "colorlog>=6.9.0",
     "fastapi>=0.116.1",
+    "loguru>=0.7.3",
     "motor>=3.7.1",
     "psycopg2-binary>=2.9.10",
     "pydantic>=2.11.7",

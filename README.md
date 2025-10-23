@@ -200,6 +200,7 @@ Copy to `.env` and fill values before running in dev or CI.
 
   ```bash
   uv run -- alembic revision --autogenerate -m "describe change"
+  cd backend\
   uv run -- alembic upgrade head
   ```
 
