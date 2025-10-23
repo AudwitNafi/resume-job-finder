@@ -50,25 +50,6 @@ async def signup(
     return await user_service.create_user(request)
 
 
-
-# @router.post("/login", response_model=TokenResponse)
-# async def login(
-#     json_request: Optional[UserLogin] = None,
-#     form_data: Optional[OAuth2EmailRequestForm] = Depends(OAuth2EmailRequestForm),
-#     user_service: UserServiceInterface = Depends(get_user_service),
-# ):
-#     if json_request:
-#         email = json_request.email
-#         password = json_request.password
-#     elif form_data:
-#         email = form_data.email
-#         password = form_data.password
-#     else:
-#         raise ValueError("Missing login data")
-
-#     return await user_service.login_user(email, password)
-
-
 @router.post("/login/json", response_model=TokenResponse)
 async def login_json(request: UserLogin, user_service: UserServiceInterface = Depends(get_user_service)):
     return await user_service.login_user(request.email, request.password)
