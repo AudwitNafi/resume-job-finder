@@ -2,12 +2,9 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 from typing import List
 import secrets
 
-import os
-from dotenv import load_dotenv
-
 
 # Adjust the path if needed (relative to env.py location)
-load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), "../../.env"))
+# load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), "../../.env"))
 
 class Settings(BaseSettings):
     # Project
@@ -45,18 +42,22 @@ class Settings(BaseSettings):
     DOCKER_IMAGE_BACKEND: str = "backend"
     DOCKER_IMAGE_FRONTEND: str = "frontend"
 
-    model_config = SettingsConfigDict(
-        env_file="../../.env",
-        env_ignore_empty = True,
-        extra = "ignore",
-    )
-
+    # --- JWT Settings ---
+    JWT_SECRET_KEY: str
+    ALGORITHM: str = "HS256"
+    ACCESS_TOKEN_EXPIRE_MINUTES: int
+    REFRESH_TOKEN_EXPIRE_MINUTES: int
+    PASS_RESET_TOKEN_EXPIRE_MINUTES: int
+    
     @property
     def DATABASE_URL(self) -> str:
         return (
             f"postgresql://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}"
             f"@{self.POSTGRES_SERVER}:{self.POSTGRES_PORT}/{self.POSTGRES_DB}"
         )
+    
+    class Config:
+        env_file = ".env"  # Automatically load values from .env file
 
 
 settings = Settings()
