@@ -7,7 +7,7 @@ from app.core.security import get_current_user_id
 
 # from app.core.security import create_access_token
 
-from typing import Annotated, Optional
+from typing import Annotated
 from fastapi import Body
 
 

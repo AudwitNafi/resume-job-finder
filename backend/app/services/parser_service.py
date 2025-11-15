@@ -5,30 +5,37 @@ Extracts key information from resumes including skills, education, experience, e
 
 import time
 import json
-from typing import Dict, List, Optional
+from typing import Dict
 from pathlib import Path
+from dotenv import load_dotenv
 
 from langchain_core.output_parsers import PydanticOutputParser
 from langchain_ollama import OllamaLLM
+from langchain_groq import ChatGroq
 from langchain_core.prompts import PromptTemplate
-from backend.app.core.logger import logger
+from app.core.logger import logger
 from langchain_community.document_loaders import (
     PyPDFLoader,
     Docx2txtLoader,
     TextLoader
 )
-from backend.app.schemas.resume import ParsedResume
+from app.schemas.resume import ParsedResume
 
+# MODEL_NAME = "mistral:7b"
+MODEL_NAME = "openai/gpt-oss-120b"
+
+load_dotenv()
 
 class ResumeParser:
-    def __init__(self, model_name: str = "mistral:7b"):
+    def __init__(self, model_name: str = MODEL_NAME):
         """
         Initialize the Resume Parser with Ollama model.
 
         Args:
             model_name: Name of the Ollama model to use (e.g., 'llama3.2', 'mistral')
         """
-        self.llm = OllamaLLM(model=model_name, temperature=0)
+        # self.llm = OllamaLLM(model=model_name, temperature=0)
+        self.llm = ChatGroq(model=model_name, temperature=0)
         self.extraction_parser = PydanticOutputParser(pydantic_object=ParsedResume)
         self.extraction_prompt = self._create_extraction_prompt()
         self.chain = self.extraction_prompt | self.llm | self.extraction_parser
@@ -168,7 +175,7 @@ def parse_all_resumes(parser: ResumeParser, resume_dir: Path, parsed_data_dir: P
     logger.info(f"✅ Finished parsing all resumes in {total_elapsed:.2f} seconds total")
 
 def main():
-    parser = ResumeParser(model_name="mistral:7b")
+    parser = ResumeParser(model_name=MODEL_NAME)
 
     logger.info("Parse ALL resumes from directory")
     try:

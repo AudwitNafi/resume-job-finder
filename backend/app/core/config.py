@@ -1,4 +1,4 @@
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic_settings import BaseSettings
 from typing import List
 import secrets
 
@@ -25,7 +25,7 @@ class Settings(BaseSettings):
     SECRET_KEY: str = secrets.token_urlsafe(32)
     FIRST_SUPERUSER: str = "admin@example.com"
     FIRST_SUPERUSER_PASSWORD: str = "changethis"
-
+    GROQ_API_KEY: str = "your_groq_api_key"
     # Database
     POSTGRES_SERVER: str = "localhost"
     POSTGRES_PORT: int = 5432
@@ -43,11 +43,11 @@ class Settings(BaseSettings):
     DOCKER_IMAGE_FRONTEND: str = "frontend"
 
     # --- JWT Settings ---
-    JWT_SECRET_KEY: str
-    ALGORITHM: str = "HS256"
-    ACCESS_TOKEN_EXPIRE_MINUTES: int
-    REFRESH_TOKEN_EXPIRE_MINUTES: int
-    PASS_RESET_TOKEN_EXPIRE_MINUTES: int
+    # JWT_SECRET_KEY: str
+    # ALGORITHM: str = "HS256"
+    # ACCESS_TOKEN_EXPIRE_MINUTES: int
+    # REFRESH_TOKEN_EXPIRE_MINUTES: int
+    # PASS_RESET_TOKEN_EXPIRE_MINUTES: int
     
     @property
     def DATABASE_URL(self) -> str:
