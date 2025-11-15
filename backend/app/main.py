@@ -1,9 +1,5 @@
 from fastapi import FastAPI
 from fastapi.exceptions import RequestValidationError
-from motor.motor_asyncio import AsyncIOMotorClient
-import os
-from dotenv import load_dotenv
-from app.db.mongodb import connect_to_mongo, close_mongo_connection
 from app.core.exception import global_exception_handler, validation_exception_handler, value_error_handler
 from app.core.database import init_sqlalchemy_db, close_sqlalchemy_db
 from app.api.v1 import api_router as api_v1_router
